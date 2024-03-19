@@ -502,8 +502,7 @@ data SomePDRComputation spec where
 data PDRSuspendedComputation spec symbol where
   PDRSuspendedComputation ::
        (PDRComputation spec symbol)
-    => InternalNode spec  -- original start node
-    -> symbol             -- defunctionalized computation
+    => symbol             -- defunctionalized computation
     -> PDRSuspendedComputation spec symbol
 deriving instance
   (Eq symbol, Eq (Node spec), Eq (Element spec)) =>
@@ -526,20 +525,22 @@ deriving instance
 instance (ComputationSpecConstraints spec) =>
     ECE.Computation Identity (Fact spec) (PathComputation spec symbol) where
   compute (PathComputation
-            (PDRSuspendedComputation startNode symbol))
-          (destNode, element) =
+            (PDRSuspendedComputation symbol))
+          (prevNode, element) =
     let (newSymbols, newPaths) = pdrCompute symbol element in
     let newFacts =
           Set.unions $ map
-            (\(path, dest) -> pathToFacts startNode path (UserNode dest))
+            (\(path, dest) ->
+              pathToFacts prevNode path (UserNode dest))
             newPaths
     in
     let newComputations =
           newSymbols
           & map (\newSymbol ->
-              ( IndexPushEdgesBySource
-              , destNode
-              , PathComputation (PDRSuspendedComputation startNode newSymbol)
+              ( IndexPushEdgesByDest
+              , prevNode
+              , PathComputation
+                  (PDRSuspendedComputation newSymbol)
               ))
     in
     pure $ ECE.computationResults newComputations $ newFacts
@@ -555,12 +556,11 @@ addPathComputation ::
      )
   => Node spec -> symbol -> Analysis spec
   -> Analysis spec
-addPathComputation source pdrComputation analysis =
+addPathComputation computationStartNode pdrComputation analysis =
   analysis & updateEngine
     (addComputations
-      (pure $ onIndex IndexPushEdgesBySource (UserNode source) $
-        PathComputation
-          (PDRSuspendedComputation (UserNode source) pdrComputation)
+      (pure $ onIndex IndexPushEdgesByDest (UserNode computationStartNode) $
+        PathComputation (PDRSuspendedComputation pdrComputation)
       )
     )
 
