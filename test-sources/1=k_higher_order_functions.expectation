@@ -1,0 +1,12 @@
+QUERY: ra, rb;
+ANALYSES: 1PLUME, SPLUME;
+RESULTS: 1PLUME(ra) = `{int}`,
+         1PLUME(rb) = `{{}}`,
+         SPLUME(ra) = `{int}`,
+         SPLUME(rb) = `{{}}`
+;
+CONSISTENCIES: 1PLUME = NO_INCONSISTENCIES &
+               SPLUME = NO_INCONSISTENCIES
+;
+WELL_FORMED;
+EVALUATE;

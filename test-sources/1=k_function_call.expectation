@@ -1,0 +1,12 @@
+QUERY: x, z;
+ANALYSES: 1PLUME, SPLUME;
+RESULTS: 1PLUME(x) = `{{}}`,
+         1PLUME(z) = `{{}}`,
+         SPLUME(x) = `{{}}`,
+         SPLUME(z) = `{{}}`
+;
+CONSISTENCIES: 1PLUME = NO_INCONSISTENCIES &
+               SPLUME = NO_INCONSISTENCIES
+;
+WELL_FORMED;
+EVALUATE;

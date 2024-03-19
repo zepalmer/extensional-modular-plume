@@ -1,0 +1,62 @@
+name:                extensional-modular-plume
+version:             0.1.0.0
+github:              "zepalmer/extensional-modular-plume"
+license:             BSD3
+author:              ["Zachary Palmer", "Earl Wu"]
+maintainer:          "zep_github@bahj.com"
+copyright:           "2021-2024 Zachary Palmer, Earl Wu"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+synopsis:            An implementation of the Plume program analysis using a modular extensional engine.
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/zepalmer/extensional-modular-plume#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- containers
+- more-containers
+- array
+- bytestring
+- dequeue
+- deepseq
+- directory
+- filepath
+- intensional-functions-closure-engine
+- mtl >= 2.2.2
+- tasty
+- tasty-hunit
+- time >= 1.8.0.2
+- transformers >= 0.5.6.2
+
+library:
+  source-dirs: src
+
+executables:
+  extensional-modular-plume-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - extensional-modular-plume
+
+tests:
+  extensional-modular-plume-test:
+    main:                Main.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - extensional-modular-plume

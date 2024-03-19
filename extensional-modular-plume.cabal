@@ -1,0 +1,137 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.36.0.
+--
+-- see: https://github.com/sol/hpack
+
+name:           extensional-modular-plume
+version:        0.1.0.0
+synopsis:       An implementation of the Plume program analysis using a modular extensional engine.
+description:    Please see the README on GitHub at <https://github.com/zepalmer/extensional-modular-plume#readme>
+homepage:       https://github.com/zepalmer/extensional-modular-plume#readme
+bug-reports:    https://github.com/zepalmer/extensional-modular-plume/issues
+author:         Zachary Palmer,
+                Earl Wu
+maintainer:     zep_github@bahj.com
+copyright:      2021-2024 Zachary Palmer, Earl Wu
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/zepalmer/extensional-modular-plume
+
+library
+  exposed-modules:
+      AST.AbstractAst
+      AST.Ast
+      AST.AstUtils
+      AST.AstWellformedness
+      Interpreter.Interpreter
+      Interpreter.InterpreterAst
+      Parser.Lexer
+      Parser.Parser
+      Parser.Token
+      PdsReachability
+      PdsReachability.Reachability
+      PdsReachability.Specification
+      PdsReachability.UserDataTypes
+      PlumeAnalysis.Context
+      PlumeAnalysis.Pds.PlumePdsComputations
+      PlumeAnalysis.Pds.PlumePdsStructureTypes
+      PlumeAnalysis.PlumeAnalysis
+      PlumeAnalysis.PlumeSpecification
+      PlumeAnalysis.Types.PlumeGraph
+      PlumeAnalysis.Utils.PlumeUtils
+      TestingFramework.ExpectationLexer
+      TestingFramework.ExpectationParser
+      TestingFramework.TestExpectationTypes
+      TestingFramework.TestFiles
+      TestingFramework.TestUtils
+      TestingFramework.Token
+      Toploop.Toploop
+      Toploop.ToploopAnalysisTypes
+      Toploop.ToploopOptions
+      Toploop.ToploopTypes
+      Toploop.ToploopUtils
+      Utils.Exception
+      Utils.NondeterminismMonad
+      Utils.PpUtils
+  other-modules:
+      Paths_extensional_modular_plume
+  hs-source-dirs:
+      src
+  build-depends:
+      array
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , deepseq
+    , dequeue
+    , directory
+    , filepath
+    , intensional-functions-closure-engine
+    , more-containers
+    , mtl >=2.2.2
+    , tasty
+    , tasty-hunit
+    , time >=1.8.0.2
+    , transformers >=0.5.6.2
+  default-language: Haskell2010
+
+executable extensional-modular-plume-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_extensional_modular_plume
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      array
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , deepseq
+    , dequeue
+    , directory
+    , extensional-modular-plume
+    , filepath
+    , intensional-functions-closure-engine
+    , more-containers
+    , mtl >=2.2.2
+    , tasty
+    , tasty-hunit
+    , time >=1.8.0.2
+    , transformers >=0.5.6.2
+  default-language: Haskell2010
+
+test-suite extensional-modular-plume-test
+  type: exitcode-stdio-1.0
+  main-is: Main.hs
+  other-modules:
+      Paths_extensional_modular_plume
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      array
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , deepseq
+    , dequeue
+    , directory
+    , extensional-modular-plume
+    , filepath
+    , intensional-functions-closure-engine
+    , more-containers
+    , mtl >=2.2.2
+    , tasty
+    , tasty-hunit
+    , time >=1.8.0.2
+    , transformers >=0.5.6.2
+  default-language: Haskell2010

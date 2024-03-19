@@ -1,0 +1,32 @@
+module TestingFramework.Token where
+
+data TestToken
+  = IDENTIFIER String
+  | INTEGER Int
+  | OUTPUT String
+  | AT
+  | AMPERSAND
+  | COLON
+  | SEMICOLON
+  | COMMA
+  | EQUAL
+  | OPENPAREN
+  | CLOSEPAREN
+  | OPENBRACKET
+  | CLOSEBRACKET
+  | QUERY
+  | ANALYSES
+  | RESULTS
+  | CONSISTENCIES
+  | EVALUATE
+  | WELL_FORMED
+  | ILL_FORMED
+  | STUCK
+  | NO_INCONSISTENCIES
+  | INCONSISTENCIES_AT
+  | DDPA
+  | PLUME
+  | SPLUME
+  | OSKPLUME
+  | OSMPLUME
+  deriving (Eq, Ord, Show)

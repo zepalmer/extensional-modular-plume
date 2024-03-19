@@ -1,0 +1,6 @@
+.stack-work/
+*~
+*.lock
+output.txt
+.vsls.json
+*.dot
